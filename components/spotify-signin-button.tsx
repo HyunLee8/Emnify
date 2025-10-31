@@ -25,13 +25,14 @@ export default function SpotifySigninButton () {
         router.push('/')
       }
     } finally {
+      router.push("/auth/sign-up-success");
       setLoading(false);
     }
   };
 
   return (
     <Button onClick={() => void login()} disabled={loading}>
-      {loading ? 'Signing in with Spotify' : 'Signup with Spotify'}
+      {loading ? 'Signing in with Spotify' : 'Signin with Spotify'}
     </Button>
   )
 }

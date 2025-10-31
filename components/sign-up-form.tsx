@@ -15,6 +15,7 @@ import { Label } from "@/components/ui/label";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import SpotifySigninButton from "./spotify-signin-button";
 
 export function SignUpForm({
   className,
@@ -105,6 +106,7 @@ export function SignUpForm({
               <Button type="submit" className="w-full" disabled={isLoading}>
                 {isLoading ? "Creating an account..." : "Sign up"}
               </Button>
+              <SpotifySigninButton/>
             </div>
             <div className="mt-4 text-center text-sm">
               Already have an account?{" "}
