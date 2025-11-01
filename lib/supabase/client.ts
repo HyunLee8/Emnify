@@ -7,7 +7,7 @@ export function createClient() {
   );
 }
 
-export async function signInWithSpotify() {
+export async function SignInWithSpotify() {
   const supabase = createClient();
   const { data, error } = await supabase.auth.signInWithOAuth({
     provider: 'spotify',

@@ -1,38 +1,54 @@
 'use client'
 
-import { useState } from "react"
-import { signInWithSpotify } from '@/lib/supabase/client'
+import { useState } from "react";
+import { createClient } from "@/lib/supabase/client";
 import { Button } from "@/components/ui/button";
 import { useRouter } from "next/navigation";
 
-export default function SpotifySigninButton () {
+export default function SpotifySigninButton() {
   const router = useRouter();
-  const [loading, setLoading] = useState(false);
+  const supabase = createClient();
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
-  const login = async() => {
-    setLoading(true);
+  const login = async () => {
+    setIsLoading(true);
+    setError(null);
+
     try {
-      const { data, error } = await signInWithSpotify();
-      if(error) {
-        console.log('Spotify sing-in error', error);
-        return;
-      }
+      // 🔹 Force sign out first
+      await supabase.auth.signOut();
+
+      // 🔹 Then start a fresh Spotify login
+      const { data, error } = await supabase.auth.signInWithOAuth({
+        provider: "spotify",
+        options: {
+          redirectTo: `${window.location.origin}/protected`,
+          // This forces Spotify to always show the login prompt:
+          queryParams: { show_dialog: "true" },
+        },
+      });
+
+      if (error) throw error;
 
       const url = (data as any)?.url;
       if (url) {
         window.location.assign(url);
-      } else {
-        router.push('/')
+        return;
       }
-    } finally {
+
       router.push("/auth/sign-up-success");
-      setLoading(false);
+    } catch (err: any) {
+      console.error("Spotify sign-in failed:", err);
+      setError(err.message || "Something went wrong");
+    } finally {
+      setIsLoading(false);
     }
   };
 
   return (
-    <Button onClick={() => void login()} disabled={loading}>
-      {loading ? 'Signing in with Spotify' : 'Signin with Spotify'}
+    <Button onClick={login} disabled={isLoading}>
+      {isLoading ? "Signing in with Spotify..." : "Sign up with Spotify"}
     </Button>
-  )
+  );
 }

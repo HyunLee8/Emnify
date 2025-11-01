@@ -33,29 +33,47 @@ export function SignUpForm({
     const supabase = createClient();
     setIsLoading(true);
     setError(null);
-
-    if (password !== repeatPassword) {
-      setError("Passwords do not match");
-      setIsLoading(false);
-      return;
-    }
-
+  
     try {
-      const { error } = await supabase.auth.signUp({
+      if (password !== repeatPassword) {
+        setError("Passwords do not match");
+        setIsLoading(false);
+        return;
+      }
+      const { data, error: signUpError } = await supabase.auth.signUp({
         email,
         password,
         options: {
           emailRedirectTo: `${window.location.origin}/protected`,
         },
       });
-      if (error) throw error;
+      if (signUpError) {
+        if (
+          signUpError.message.toLowerCase().includes("user already registered") ||
+          signUpError.message.toLowerCase().includes("email")
+        ) {
+          setError("This email is already taken. Please sign in instead.");
+          setIsLoading(false);
+          return;
+        } else {
+          throw signUpError;
+        }
+      }
+      if (data.user && !data.session) {
+        setError("Please check your email to confirm your account.");
+        setIsLoading(false);
+        return;
+      }
       router.push("/auth/sign-up-success");
-    } catch (error: unknown) {
-      setError(error instanceof Error ? error.message : "An error occurred");
+    } catch (err: any) {
+      console.error("Signup error:", err);
+      setError(err.message || "An unexpected error occurred.");
     } finally {
       setIsLoading(false);
     }
   };
+  
+  
 
   return (
     <div className={cn("flex flex-col gap-6", className)} {...props}>
