@@ -5,7 +5,7 @@ export async function signInWithSpotify() {
   const { data, error } = await supabase.auth.signInWithOAuth({
     provider: 'spotify',
     options: {
-      redirectTo: `https://fldaivpvboojmdlycehn.supabase.co/auth/v1/callback`,
+      redirectTo: `https://localhost:3000/api/auth/callback`,
     },
   })
 
@@ -18,4 +18,5 @@ export async function signInWithSpotify() {
 export async function signOut() {
   const supabase = await createClient()
   const { error } = await supabase.auth.signOut()
+  if ( error ) throw error
 }
