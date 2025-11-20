@@ -2,7 +2,7 @@
 
 export default function SpotifyButton() {
   const handleClick = async () => {
-    window.location.href = 'http://localhost:3000/api/auth/spotify'
+    window.location.href = '/api/auth/spotify'
   }
   return (
     <button 

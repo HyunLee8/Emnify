@@ -1,17 +1,17 @@
 import { createClient } from '../supabase/server'
 
-export async function signInWithSpotify() {
+export async function signInWithSpotify(next = '/dashboard') {
   const supabase = await createClient()
   const { data, error } = await supabase.auth.signInWithOAuth({
     provider: 'spotify',
     options: {
-      redirectTo: `https://localhost:3000/api/auth/callback`,
+      redirectTo: `${process.env.NEXT_PUBLIC_SITE_URL}/auth/callback?next=${next}`,
     },
   })
 
   if (error) throw error
   if (!data.url) throw new Error('No URL returned from Spotify OAuth sign-in')
-
+  console.log("OAuth URL:", data.url)
   return data.url
 }
 
