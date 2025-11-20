@@ -9,7 +9,7 @@ export default function SpotifyButton() {
       onClick={handleClick}
       className="font-bold border rounded-full p-5 hover:bg-white hover:text-black transition duration-300"
     >
-      Spotify Button goes here
+      Discover with Spotify
     </button>
   )
 }
