@@ -6,7 +6,8 @@ export async function signInWithSpotify() {
   const { data, error } = await supabase.auth.signInWithOAuth({
     provider: 'spotify',
     options: {
-      redirectTo: `http://localhost:3000/dashboard`,
+      scopes: 'user-read-email',
+      redirectTo: `http://localhost:3000/dashboard`
     },
   })
 
@@ -25,4 +26,39 @@ export async function signOut() {
   const supabase = await createClient()
   const { error } = await supabase.auth.signOut()
   if ( error ) throw error
+}
+
+export async function getSpotifyToken(userID: string) {
+  const supabase = await createClient()
+
+  // fetches the token by finding the userID and as a single item not a array
+  const { data: session, error } = await supabase
+  .from('sessions')
+  .select('provider_token, provider_refresh_token')
+  .eq('user_id', userID)
+  .single()    
+
+  if(error) throw error
+
+  return {
+    accessToken: session.provider_token,
+    refreshToken: session.provider_refresh_token
+  }
+
+}
+
+export async function getUserPlaylists(acessToken: string) {
+  //Fetches the user's playlist from the API
+  const response = await fetch('https://api.spotify.com/v1/me/playlists', {
+    headers: {
+      // here it uses the token. Bearer is a type of token
+      Authorization: `Bearer ${acessToken}`,
+    },
+  })
+
+  if (!response.ok) {
+    throw new Error('Failed to fetch playlists from Spotify')
+  }
+
+  return response.json()
 }
