@@ -47,12 +47,12 @@ export async function getSpotifyToken(userID: string) {
 
 }
 
-export async function getUserPlaylists(acessToken: string) {
+export async function getUserPlaylists(accessToken: string) {
   //Fetches the user's playlist from the API
   const response = await fetch('https://api.spotify.com/v1/me/playlists', {
     headers: {
       // here it uses the token. Bearer is a type of token
-      Authorization: `Bearer ${acessToken}`,
+      Authorization: `Bearer ${accessToken}`,
     },
   })
 
