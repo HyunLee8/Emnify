@@ -1,11 +1,10 @@
 import { getUserPlaylists, getSpotifyToken } from '../../../../lib/auth/spotify'
-import { createRouteHandlerClient } from "@supabase/auth-helpers-nextjs";
-import { cookies } from 'next/headers';
+import { createClient } from '@/lib/supabase/server'
 import { NextResponse } from 'next/server';
 
 export async function GET() {
   try {
-    const supabase = createRouteHandlerClient({ cookies });
+    const supabase = await createClient()
 
     const {
       data: { user }
@@ -22,6 +21,7 @@ export async function GET() {
     return NextResponse.json(playlists);
   } catch (error) {
     console.error("API ERROR:", error);
-    return NextResponse.json({ error: error }, { status: 500 });
+    const errorMessage = error instanceof Error ? error.message : String(error)
+    return NextResponse.json({ error: errorMessage }, { status: 500 });
   }
 }
