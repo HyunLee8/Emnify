@@ -1,8 +1,19 @@
+import { createClient } from '@/lib/supabase/server'
+import { redirect } from 'next/navigation'
 import UserPlaylist from '@/components/user-playlist'
-export default function PlaylistInsights() {
+
+export default async function PlaylistInsights() {
+  // Check if user is authenticated
+  const supabase = await createClient()
+  const { data: { user }, error: userError } = await supabase.auth.getUser()
+
+  if (userError || !user) {
+    redirect('/api/auth/spotify')
+  }
+
   return (
-    <h1 className="flex flex-col justify-center items-center">
+    <main className="flex min-h-screen flex-col items-center justify-center p-8">
       <UserPlaylist />
-    </h1>
+    </main>
   )
 }
