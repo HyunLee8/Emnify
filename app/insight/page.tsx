@@ -1,6 +1,7 @@
 import { createClient } from '@/lib/supabase/server'
 import { redirect } from 'next/navigation'
 import UserPlaylist from '@/components/user-playlist'
+import ReturnDashboard from '@/components/return'
 
 export default async function PlaylistInsights() {
   // Check if user is authenticated
@@ -14,6 +15,7 @@ export default async function PlaylistInsights() {
   return (
     <main className="flex min-h-screen flex-col items-center justify-center p-8">
       <UserPlaylist />
+      <ReturnDashboard />
     </main>
   )
 }

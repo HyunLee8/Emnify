@@ -51,14 +51,14 @@ export default async function UserPlaylist() {
     if (playlists.items.length === 0) {
       return (
         <div>
-          <p>You don't have any playlists yet</p>
+          <p>You dont have any playlists yet</p>
         </div>
       )
     }
 
     return (
       <div className="w-full max-w-2xl">
-        <h2 className="text-2xl font-bold mb-4">Your Playlists ({playlists.total || playlists.items.length})</h2>
+        <h2 className="text-2xl font-bold mb-4">Your Public Playlists</h2>
         {playlists.items.length > 0 ? (
           <ul className="space-y-3">
             {playlists.items.map((p: Playlist) => (
