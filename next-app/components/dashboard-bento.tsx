@@ -54,7 +54,7 @@ const features = [
       "Get notified when someone shares a file or mentions you in a comment.",
     href: "/",
     cta: "Learn more",
-    background: <img className="absolute -top-20 -right-20 opacity-60" />,
+    background: <Image src="/path-to-image.jpg" alt="" className="absolute -top-20 -right-20 opacity-60" fill />,
     className: "lg:col-start-3 lg:col-end-3 lg:row-start-2 lg:row-end-4",
   },
 ]
