@@ -25,7 +25,8 @@ export default async function dashboard({
   return (
     <main className="flex min-h-screen flex-col items-center justify-between">
       <div className="flex flex-col items-center h-screen mt-20">
-        <h1 className="text-4xl font-bold">Welcome to your Dashboard</h1>
+        <h1 className="text-4xl font-bold text-center">Welcome to your Dashboard {user.user_metadata.name
+        }</h1>
         {error && (
           <div className="mt-4 p-4 bg-red-50 border border-red-200 rounded-lg max-w-2xl">
             <h2 className="text-red-800 font-bold mb-2">Authentication Error</h2>

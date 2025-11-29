@@ -3,7 +3,7 @@
 export default function SimilarButton() {
   return (
     <button>
-      Similar Playlists
+      Song Insights
     </button>
   )
 }
