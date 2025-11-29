@@ -200,14 +200,14 @@ interface FormattedPlaylist {
 
 export async function formatUserPlaylists(accessToken: string) {
   const result = await getUserPlaylists(accessToken);
-  
-  const firstFour = result.items.slice(0, 4);
 
-  const formatted: FormattedPlaylist[] = firstFour.map((pl: { id: string; name: string; images?: { url: string }[] }) => ({
-    id: pl.id,
-    name: pl.name,
-    image: pl.images?.[0]?.url ?? null
-  }));
+  const formatted: FormattedPlaylist[] = result.items.map(
+    (pl: { id: string; name: string; images?: { url: string }[] }) => ({
+      id: pl.id,
+      name: pl.name,
+      image: pl.images?.[0]?.url ?? null
+    })
+  );
 
   return formatted;
 }

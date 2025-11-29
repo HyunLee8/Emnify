@@ -28,12 +28,11 @@ export default async function UserPlaylist() {
 
   return (
     <div className="w-full flex flex-col items-center justify-center">
-      <h2>You playlists</h2>
       <div className="flex gap-10">
         {formattedPlaylists.map(pl => (
-          <div key={pl.id}>
+          <div className="flex flex-col justify-center items-center gap-5" key={pl.id}>
             <img src={pl.image || ''} width={150} />
-            <p>{pl.name}</p>
+            <p className="font-bold">{pl.name}</p>
           </div>
         ))}
       </div>
