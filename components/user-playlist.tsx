@@ -19,9 +19,7 @@ export default async function UserPlaylist() {
     }
 
     // Get Spotify token and playlists directly
-    console.log('Getting Spotify token for user:', user.id, user.email)
     const { accessToken } = await getSpotifyToken(user.id)
-    console.log('Got access token, fetching playlists...')
     
     const playlists = await getUserPlaylists(accessToken)
     

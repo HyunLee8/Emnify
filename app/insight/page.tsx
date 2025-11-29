@@ -1,6 +1,6 @@
 import { createClient } from '@/lib/supabase/server'
 import { redirect } from 'next/navigation'
-import UserPlaylist from '@/components/user-playlist'
+import UserPlaylist from '@/components/playlist-list'
 import ReturnDashboard from '@/components/return'
 
 export default async function PlaylistInsights() {

@@ -154,19 +154,7 @@ export async function getUserPlaylists(accessToken: string) {
       email: meData.email
     })
   }
-  
-  // Log first few playlist names for debugging
-  if (data.items && data.items.length > 0) {
-    console.log('First 3 playlists:', data.items.slice(0, 3).map((p: any) => ({ 
-      name: p.name, 
-      id: p.id,
-      owner: p.owner?.display_name || p.owner?.id
-    })))
-  } else {
-    console.log('WARNING: Items array is empty or missing!')
-    console.log('Full response:', JSON.stringify(data, null, 2))
-  }
-  
+
   // Handle pagination - if there are more playlists, fetch them
   let allPlaylists = data.items || []
   let nextUrl = data.next
@@ -202,4 +190,24 @@ export async function getUserPlaylists(accessToken: string) {
     items: allPlaylists,
     total: data.total || allPlaylists.length
   }
+}
+
+interface FormattedPlaylist {
+  id: string;
+  name: string;
+  image: string | null;
+}
+
+export async function formatUserPlaylists(accessToken: string) {
+  const result = await getUserPlaylists(accessToken);
+  
+  const firstFour = result.items.slice(0, 4);
+
+  const formatted: FormattedPlaylist[] = firstFour.map((pl: { id: string; name: string; images?: { url: string }[] }) => ({
+    id: pl.id,
+    name: pl.name,
+    image: pl.images?.[0]?.url ?? null
+  }));
+
+  return formatted;
 }
