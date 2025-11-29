@@ -1,9 +1,7 @@
 import { createClient } from '@/lib/supabase/server'
 import { redirect } from 'next/navigation'
-import InsightsButton from '@/components/playlist-insights'
-import CreatorButton from '@/components/playlist-creator'
-import SimilarButton from '@/components/similar-playlists'
 import SpotifyLogout from '@/components/spotify-logout'
+import { BentoDash } from '@/components/dashboard-bento'
 
 export default async function dashboard({
   searchParams,
@@ -35,13 +33,10 @@ export default async function dashboard({
             </p>
           </div>
         )}
-        <div className="flex gap-15 mt-8">
-          <InsightsButton />
-          <CreatorButton />
-          <SimilarButton />
-          <SpotifyLogout />
+        <div className="flex gap-15 mt-8 w-2/3">
+          <BentoDash />
         </div>
-        <h1></h1>
+        <SpotifyLogout />
       </div>
 
       <button></button>
