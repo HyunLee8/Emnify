@@ -1,4 +1,4 @@
-import { signInWithSpotify } from '../../../../lib/auth/spotify'
+import { signInWithSpotify } from '@/lib/auth/spotify'
 import { NextResponse } from 'next/server'
 
 export async function GET() {

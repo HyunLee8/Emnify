@@ -1,4 +1,4 @@
-import { getUserPlaylists, getSpotifyToken } from '../../../../lib/auth/spotify'
+import { getUserPlaylists, getSpotifyToken } from '@/lib/auth/spotify'
 import { createClient } from '@/lib/supabase/server'
 import { NextResponse } from 'next/server';
 

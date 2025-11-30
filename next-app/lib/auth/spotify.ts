@@ -12,7 +12,7 @@ export async function signInWithSpotify() {
     provider: 'spotify',
     options: {
       scopes: 'user-read-email playlist-read-private playlist-read-collaborative',
-      redirectTo: `${process.env.NEXT_PUBLIC_SITE_URL}/api/auth/callback?next=/dashboard`,
+      redirectTo: `${process.env.NEXT_PUBLIC_SITE_URL}/api/auth/callback?next=/nav/dashboard`,
       // Force Spotify to show the account picker so users can switch accounts.
       queryParams: {
         show_dialog: 'true',

@@ -1,7 +1,4 @@
-'use client'
 import { Geist, Geist_Mono } from "next/font/google";
-import { usePathname } from "next/navigation";
-import NavBar from "@/components/navbar";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -19,15 +16,12 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const pathname = usePathname();
-  const showNavBar = pathname !== '/';
 
   return (
     <html lang="en">
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased bg-black text-white`}
       >
-        {showNavBar && <NavBar />}
         {children}
       </body>
     </html>

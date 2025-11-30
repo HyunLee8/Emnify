@@ -17,7 +17,7 @@ export default async function dashboard() {
   return (
     <main className="flex min-h-screen flex-col items-center justify-between">
       <div className="flex flex-col items-center justify-center h-screen gap-6">
-        <Link href="/playlists" className="pt-1 pb-1 pl-2 pr-2 border rounded-full">Trending now</Link>
+        <Link href="/playlists" className="pt-1 pb-1 pl-2 pr-2 border rounded-full">Trending now →</Link>
         <h1 className="text-center text-5xl max-w-150">AI-powered insights and playlist creation</h1>
         <TextType
           text={["Emanate your own Spotify Playlist through a Novelty Based Model", "5 times smarter than smart shuffle and no overlaps", "Generate stats and insights on your listening habits"]}

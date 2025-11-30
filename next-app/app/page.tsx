@@ -1,6 +1,5 @@
 import SpotifyButton from '@/components/spotify-login'
 import TextType from '../components/TextType'
-import GradientText from '../components/GradientText'
 import Image from 'next/image'
 import logo from '../assets/logo.png'
 
