@@ -41,8 +41,8 @@ export default async function UserPlaylist() {
             containerWidth="300px"
             imageHeight="300px"
             imageWidth="300px"
-            rotateAmplitude={19}
-            scaleOnHover={1.3}
+            rotateAmplitude={12}
+            scaleOnHover={1.1}
             showMobileWarning={false}
             showTooltip={true}
             displayOverlayContent={true}
