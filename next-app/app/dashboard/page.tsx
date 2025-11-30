@@ -1,7 +1,9 @@
 import { createClient } from '@/lib/supabase/server'
 import { redirect } from 'next/navigation'
 import SpotifyLogout from '@/components/spotify-logout'
-import { BentoDash } from '@/components/dashboard-bento'
+import DashboardWaffle from '@/components/dashboard-waffle'
+import DecryptedText from '@/components/DecryptedText';
+
 
 export default async function dashboard({
 }: {
@@ -17,10 +19,10 @@ export default async function dashboard({
 
   return (
     <main className="flex min-h-screen flex-col items-center justify-between">
-      <div className="flex flex-col items-center h-screen mt-15">
-        <h1 className="text-4xl font-bold text-center mb-10">Dashboard {user.user_metadata.name}</h1>
-        <div className="flex gap-15 mt-8 w-2/3">
-          <BentoDash />
+      <div className="flex flex-col items-center h-screen mt-10">
+        <h1 className="text-3xl font-bold text-center mb-10 pt-5 pb-5 pl-10 pr-10 border rounded-full backdrop-blur-md bg-white/10">{user.user_metadata.name}&apos;s Dashboard</h1>
+        <div className="flex gap-15 mt-8">
+          <DashboardWaffle />
         </div>
         <SpotifyLogout />
       </div>
