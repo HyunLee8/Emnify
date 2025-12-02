@@ -47,7 +47,7 @@ export default async function UserPlaylist() {
             showTooltip={true}
             displayOverlayContent={true}
             overlayContent={
-              <p className="tilted-card-demo-text text-white font-bold p-3 bg-gradient-to-br from-[#4a4a4a] via-[#6b6b6b] to-[#3a3a3a] rounded-full mt-5 ml-7">
+              <p className="tilted-card-demo-text text-white rounded-xl font-bold p-3 bg-black  mt-5 ml-7">
                 {pl.name}
               </p>
             }
@@ -56,5 +56,5 @@ export default async function UserPlaylist() {
       </div>
     </div>
   );
-  
+
 }

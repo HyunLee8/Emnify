@@ -1,11 +1,10 @@
 import Link from 'next/link'
-import TextType from '@/components/TextType';
 import GradientText from '@/components/GradientText';
 
 export default function DashboardWaffle() {
   return (
       <div className="flex flex-wrap justify-center gap-10 w-150 p-5 bg-[#191414] rounded-xl">
-        <Link href="/insight" className="animate-pulse flex justify-center items-center w-64 h-64 p-10 border-[0.25px] border-white text-center rounded-lg transition-all duration-500 hover:shadow-[0_0_25px_8px_rgba(255,255,255,0.8)]">
+        <Link href="/nav/insight" className="animate-pulse flex justify-center items-center w-64 h-64 p-10 border-[0.25px] border-white text-center rounded-lg transition-all duration-500 hover:shadow-[0_0_25px_8px_rgba(255,255,255,0.8)]">
           <GradientText
             colors={["#40ffaa", "#4079ff", "#40ffaa", "#4079ff", "#40ffaa"]}
             animationSpeed={10}
