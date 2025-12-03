@@ -70,7 +70,7 @@ def get_artist_id(tracks: List[Dict[str, Any]]) -> List[str]:
 
     return list(ids)
 
-def get_artists(sp: spotipy.Spotify, artist_ids: List[str]) -> List[Dict[str, Any]]:
+def get_artists(sp: spotipy.Spotify) -> List[Dict[str, Any]]:
     artists = []
     batch_size = 50
 
