@@ -1,4 +1,5 @@
 from typing import List, Dict, Any
+from collections import Counter
 import spotipy
 from .spotify import(
     get_spotify_client,
@@ -17,7 +18,13 @@ artist_ids = get_artist_id(tracks)
 #=============================
 #FOR COMPUTING ONLY
 #=============================
-# GENRES
+
+
+# Count each genre occurrence
 genres = get_genres(client, artist_ids)
+def compute_genre_percentages(genres) -> List[Dict[str, int]]:
+    genre_counts = Counter(genres)
+    return genre_counts
+
 
 
