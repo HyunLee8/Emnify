@@ -1,6 +1,6 @@
 import spotipy
-from spotipy.oauth2 import SpotifyOAuth
 from typing import List, Dict, Any
+from spotipy.oauth2 import SpotifyOAuth
 
 #===============================
 #Basic Spotify API Interactions
