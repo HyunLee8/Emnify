@@ -30,7 +30,7 @@ export default async function UserPlaylist() {
   }
 
   return (
-    <div className="w-full flex flex-col items-center p-5 bg-stone-950 rounded-xl h-screen">
+    <div className="w-full flex flex-col items-center p-5 bg-[#101012] rounded-xl h-screen">
       <div className="flex w-full mb-3">
         <h1 className="mr-auto font-bold text-xl">Your Library</h1>
         <p className="text-4xl rounded-full">+</p>
